@@ -14,17 +14,20 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1",
+    "source-map-explorer": "^2.4.2",
+    "tslint": "^6.1.2",
     "typescript": "^3.9.2"
   },
   "scripts": {
     "precommit": "yarn run lint",
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "react-scripts start --profile",
+    "build": "react-scripts build --profile",
     "build-release": "react-scripts build --release",
     "test": "react-scripts test",
     "test-watch": "react-scripts test --watchAll",
     "test-coverage": "react-scripts test --coverage",
-    "lint": "tslint -c tslint.json 'src/**/*.ts'"
+    "lint": "tslint -c tslint.json 'src/**/*.ts'",
+    "analyze": "source-map-explorer 'build/static/js/*.js'"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -40,8 +43,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "tslint": "^6.1.2"
   }
 }
