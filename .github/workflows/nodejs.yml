@@ -9,6 +9,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      CI: true
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -18,17 +20,32 @@ jobs:
         with:
           node-version: 12.x
 
+      - name: Cache Node.js modules
+        uses: actions/cache@v1
+        with:
+          path: ~/.npm # npm cache files are stored in `~/.npm` on Linux/macOS
+          key: ${{ runner.OS }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.OS }}-node-
+            ${{ runner.OS }}-
+
       - name: Install dependencies
-        run: yarn --frozen-lockfile
+        run: yarn
 
       - name: Run build --release
-        run: yarn run build --release
+        run: yarn run build --release --if-present
 
       - name: Archive build artifacts
         uses: actions/upload-artifact@v1
         with:
           name: build
           path: build
+
+      - name: Archive node.js modules artifacts
+        uses: actions/upload-artifact@v1
+        with:
+          name: node_modules
+          path: node_modules
 
   quality-control:
     needs: build
