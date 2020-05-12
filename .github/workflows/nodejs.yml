@@ -30,22 +30,16 @@ jobs:
             ${{ runner.OS }}-
 
       - name: Install dependencies
-        run: yarn
+        run: yarn --frozen-lockfile
 
       - name: Run build --release
-        run: yarn run build --release --if-present
+        run: yarn run build --release
 
-      - name: Archive build artifacts
+      - name: Archive build results
         uses: actions/upload-artifact@v1
         with:
           name: build
           path: build
-
-      - name: Archive node.js modules artifacts
-        uses: actions/upload-artifact@v1
-        with:
-          name: node_modules
-          path: node_modules
 
   quality-control:
     needs: build
@@ -53,6 +47,9 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: yarn --frozen-lockfile
 
       - name: Find problematic patterns in code
         run: yarn run lint
