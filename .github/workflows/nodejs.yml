@@ -21,18 +21,6 @@ jobs:
       - name: Install dependencies
         run: yarn --frozen-lockfile
 
-      - name: Find problematic patterns in code
-        run: yarn run lint
-
-      - name: Run unit tests coverage
-        run: yarn run test-coverage
-
-      - name: Archive code coverage results
-        uses: actions/upload-artifact@v1
-        with:
-          name: code-coverage-report
-          path: coverage
-
       - name: Run build --release
         run: yarn run build --release
 
@@ -51,3 +39,22 @@ jobs:
 
       - name: Find problematic patterns in code
         run: yarn run lint
+
+  unit-test:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Run unit tests
+        run: yarn run test
+
+      - name: Run unit tests coverage
+        run: yarn run test-coverage
+
+      - name: Archive code coverage results
+        uses: actions/upload-artifact@v1
+        with:
+          name: code-coverage-report
+          path: coverage
