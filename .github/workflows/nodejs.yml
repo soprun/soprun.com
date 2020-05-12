@@ -1,7 +1,6 @@
 name: Node.js CI
 
-x-common:
-  &default-common
+x-common: &default-common
   steps:
     - name: Checkout repository
       uses: actions/checkout@v2
