@@ -20,17 +20,23 @@ jobs:
         with:
           node-version: 12.x
 
-      - name: Cache Node.js modules
-        uses: actions/cache@v1
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+
+      - uses: actions/cache@v1
+        id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
         with:
-          path: ~/.npm # npm cache files are stored in `~/.npm` on Linux/macOS
-          key: ${{ runner.OS }}-node-${{ hashFiles('**/package-lock.json') }}
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
-            ${{ runner.OS }}-node-
-            ${{ runner.OS }}-
+            ${{ runner.os }}-yarn-
 
       - name: Install dependencies
         run: yarn --frozen-lockfile
+
+      - name: Find problematic patterns in code
+        run: yarn run lint
 
       - name: Run build --release
         run: yarn run build --release
@@ -41,25 +47,7 @@ jobs:
           name: build
           path: build
 
-  quality-control:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-
-      - name: Install dependencies
-        run: yarn --frozen-lockfile
-
-      - name: Find problematic patterns in code
-        run: yarn run lint
-
-  unit-test:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
+      # Quality control && Unit tests
 
       - name: Run unit tests
         run: yarn run test
