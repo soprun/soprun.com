@@ -17,6 +17,7 @@
     "typescript": "^3.9.2"
   },
   "scripts": {
+    "precommit": "yarn run lint",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "build-release": "react-scripts build --release",
