@@ -14,12 +14,14 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1",
-    "typescript": "~3.7.2"
+    "typescript": "^3.9.2"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "build-release": "react-scripts build --release",
     "test": "react-scripts test",
+    "test-coverage": "react-scripts test --coverage",
     "lint": "tslint -c tslint.json 'src/**/*.ts'"
   },
   "eslintConfig": {
@@ -36,5 +38,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "tslint": "^6.1.2"
   }
 }
