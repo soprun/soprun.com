@@ -41,11 +41,11 @@ jobs:
       - name: Run unit tests coverage
         run: yarn run test-coverage
 
-      - name: Archive code coverage results
-        uses: actions/upload-artifact@v1
-        with:
-          name: code-coverage-report
-          path: coverage
+#      - name: Archive code coverage results
+#        uses: actions/upload-artifact@v1
+#        with:
+#          name: code-coverage-report
+#          path: coverage
 
       - name: Run build --release
         run: yarn run build --release
