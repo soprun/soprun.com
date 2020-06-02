@@ -1,18 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import * as serviceWorker from './serviceWorker';
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
-import routes from './routes';
+import Layout from "./components/Layout/Layout";
 
 ReactDOM.render(
   <React.StrictMode>
-    <Router>
-      <Switch>
-        {routes.map(route => (
-          <Route {...route} />
-        ))}
-      </Switch>
-    </Router>
+    <Layout/>
   </React.StrictMode>,
   document.getElementById('root')
 )
