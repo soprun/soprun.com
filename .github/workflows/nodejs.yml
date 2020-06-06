@@ -11,6 +11,10 @@ jobs:
     runs-on: ubuntu-latest
     env:
       CI: true
+      APP_URL: ${{ secrets.APP_URL }}
+      APP_DOMAIN: ${{ secrets.APP_DOMAIN }}
+      APP_SECRET: ${{ secrets.APP_SECRET }}
+      APP_RELEASE: ${{ github.sha }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
