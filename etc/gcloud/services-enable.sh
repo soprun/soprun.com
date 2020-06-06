@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-source ./env.sh
+source env.sh
 
 # Чтобы включить метрики, выполните следующее:
 # gcloud config set disable_usage_reporting false
