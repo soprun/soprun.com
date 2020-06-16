@@ -1,11 +1,15 @@
 import React from 'react';
 import './Layout.css';
+import Header from "../Header/Header";
 
 function Layout() {
   return (
-    <div className="container">
-      Service maintenance soprun.com.
-    </div>
+    <>
+      <Header/>
+      <main id="main" className="container">
+        Page, the page!
+      </main>
+    </>
   );
 }
 

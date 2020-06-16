@@ -2,28 +2,33 @@
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600&display=swap');
 
 body {
-    margin: 0;
-    font-family: var(--font-family-base);
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+  font-family: var(--font-family-base);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 *, *:before, *:after {
-    padding: 0;
-    margin: 0;
-    border: none;
+  padding: 0;
+  margin: 0;
+  border: none;
 }
 
 code {
-    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
 #root {
-    min-height: 100vh;
+  min-height: 100vh;
 }
 
 .container {
-    margin: 0 auto;
-    max-width: var(--max-content-width);
-    min-height: inherit;
+  margin: 0 auto;
+  max-width: var(--max-content-width);
+  min-height: inherit;
 }
+
+#main {
+  padding: 2em 0 0;
+}
+

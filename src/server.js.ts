@@ -1,14 +1,11 @@
 import express from 'express';
 import path from 'path';
-import config from './config/config';
 
 // import webpack from "webpack";
 // import webpackDevMiddleware from "webpack-dev-middleware";
 // import webpackHotMiddleware from "webpack-hot-middleware";
 
 const app = express();
-
-app.set('trust proxy', config.trustProxy);
 
 app.use(express.static(path.join(__dirname, 'build')));
 

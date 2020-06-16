@@ -23,8 +23,8 @@
   },
   "scripts": {
     "precommit": "yarn run lint",
-    "start": "react-scripts start --profile",
-    "build": "react-scripts build --profile",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
     "build-release": "react-scripts build --release",
     "test": "react-scripts test",
     "test-watch": "react-scripts test --watchAll",
